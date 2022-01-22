@@ -118,7 +118,7 @@ async def steal(ctx, user: discord.Member):
         updated_money = wallet + random_money
         updated_money_user = wallet_user - random_money
         await collection.update_one({"_id": member.id}, {"$set": {"wallet": updated_money_user}})
-        await collection.update_one({"_id": ctx.author}, {"$set": {"wallet": updated_money}})
+        await collection.update_one({"_id": ctx.author.id}, {"$set": {"wallet": updated_money}})
         await ctx.respond(f"You successfuly pickpocket {user}! you now have {updated_money} while they have {updated_money_user}")
     if luck == 2:
         await ctx.respond(f"You failed to pickpocket {user}! mfs can't do shit right these days smh!")
