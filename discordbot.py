@@ -96,12 +96,16 @@ async def bank(ctx, member: discord.Member=None):
 
     await ctx.respond(embed=embed)
 
+	
+"""
 @bot.slash_command(name="steal", description="earn money by picking from user's pockets.", guild_ids=[931679366365204600, 932716813580636230])
 @commands.cooldown(1,60, commands.BucketType.user)
 async def steal(ctx, user: discord.Member):
     member = ctx.author
-    findbank = await collection.find_one({"_id": member.id})
-    findbankuser = await collection.find_one({"_id": user})
+    findbank = await collection.find_one({"_id": ctx.author.id})
+    findbankuser = await collection.find_one({"_id": member.id})
+    if not findbank:
+        await collection.insert_one({"_id": ctx.author.id, "bank": 0, "wallet": 0})
     if not findbank:
         await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
      
@@ -118,7 +122,7 @@ async def steal(ctx, user: discord.Member):
         await ctx.respond(f"You successfuly pickpocket {user}! you now have {updated_money} while they have {updated_money_user}")
     if luck == 2:
         await ctx.respond(f"You failed to pickpocket {user}! mfs can't do shit right these days smh!")
-
+"""
 @bot.slash_command(name="pickpocket", description="earn money by picking from people's pockets. cooldown = 2 seconds", guild_ids=[931679366365204600, 932716813580636230])
 @commands.cooldown(1,5, commands.BucketType.user)
 async def pickpocket(ctx):
@@ -126,7 +130,7 @@ async def pickpocket(ctx):
     findbank = await collection.find_one({"_id": member.id})
     if not findbank:
         await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
-    
+	
     luck = random.randint(1,2)
     wallet = findbank["wallet"]
     random_money = random.randrange(1, 130)
