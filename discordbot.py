@@ -96,7 +96,7 @@ async def bank(ctx, member: discord.Member=None):
 
     await ctx.respond(embed=embed)
 
-@bot.slash_command(name="pickpocket", description="earn money by picking from people's pockets.", guild_ids=[931679366365204600, 932716813580636230])
+@bot.slash_command(name="pickpocket", description="earn money by picking from people's pockets. cooldown = 2 seconds", guild_ids=[931679366365204600, 932716813580636230])
 @commands.cooldown(1,5, commands.BucketType.user)
 async def pickpocket(ctx):
     member = ctx.author
