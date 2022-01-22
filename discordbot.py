@@ -118,7 +118,7 @@ async def steal(ctx, user: discord.Member):
     random_money = random.randrange(1, wallet_user)
 
     if wallet_user == 0:
-        ctx.send("You cannot steal imaginary money")
+        await ctx.send("You cannot steal imaginary money")
 
     if luck == 1:
         updated_money = wallet + random_money
