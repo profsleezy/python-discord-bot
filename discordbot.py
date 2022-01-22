@@ -3,9 +3,7 @@ from ssl import CERT_NONE
 import discord
 from discord.ext import commands
 import random
-from datafile import*
 from matplotlib.collections import Collection
-from datafile import*
 import asyncio
 from aiohttp import request
 import motor.motor_asyncio
@@ -18,6 +16,26 @@ import urllib
 import aiohttp
 import datetime
 import requests
+
+rate = [
+    'way too gay','very gay','a hundred percent gay','definietely homosexual', 'super gay', 'watching gay porn', 'sucking cock','wondering where his dad is',
+    'gay to the max', 'on tinder looking for big black men','in need of straightness','crazy gay','not straight','gay. just gay.','ultra gay','mega gay',
+    'looking at big black co-','obsessed with people of the same gender','in love with someone of the same gender','GAY','G+A+Y','getting a blowjob from a man','searching for one night stands with men',
+    'gay without a doubt','definitely gay','certainly','gay for sure','gay undoubtedly','in the closet but gay both anyways LOL','gay no cap','eating a mans ass',
+    'making love with the same gender','definitely homo','homosexual for sure','homosexual undoubtedly','homosexual without a doubt','secretly filming gay por','just enjoying being gay',
+    'obviously gay','gay without the e','straight from walmart','unstraight','searching for a father and a daddy','begging for co-','single. and gay.','depressed. but no one cares he gay anyways LOL',
+    'trying to come out but is afraid to lose his father','HOMOSEXUAL','the gay friend','pounding a man from the back','disappointing god right now','unsurprisingly gay','simply gay','doing gay shit rn','gay in spanish'
+    ]
+
+rude = [
+    'shut yo dum dum lookin ass up','stop pinging cockhead','nobody even cares bruh','your mom','ping again if gay','shut the fuck up','i feel bad for your parents','suck mi cock',
+    'go look for a dad','gay','95.181.232.3 this you bitch??','you a ho if you ping again','bruh what','im watching good stuff dont mind me','why you gotta be so annoying',
+    'dont you got friends to talk to???',]
+
+slapping = [' destroyed the face of ', ' slapped the shit out of ', ' knocked out ', ' slaps ',' slaps the sense out of ', ' disrespectfully slaps ']
+
+ball = ['yes','indeed','maybe','probably','i dont think so','no lol','ofc not LOL','real question is, why are you gay','no but are you gay??','big black men tho','jesus christ what']
+
 
 
 cluster = motor.motor_asyncio.AsyncIOMotorClient("mongodb+srv://ghost:abc54321@discordcluster.cghhc.mongodb.net/discord?retryWrites=true&w=majority&ssl_cert_reqs=CERT_NONE")
