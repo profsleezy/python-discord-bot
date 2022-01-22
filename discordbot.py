@@ -96,6 +96,29 @@ async def bank(ctx, member: discord.Member=None):
 
     await ctx.respond(embed=embed)
 
+@bot.slash_command(name="steal", description="earn money by picking from user's pockets.", guild_ids=[931679366365204600, 932716813580636230])
+@commands.cooldown(1,60, commands.BucketType.user)
+async def steal(ctx, user: discord.Member):
+    member = ctx.author
+    findbank = await collection.find_one({"_id": member.id})
+    findbankuser = await collection.find_one({"_id": user})
+    if not findbank:
+        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
+     
+    luck = random.randint(1,2)
+    wallet = findbank["wallet"]
+    wallet_user = findbankuser["wallet"]
+    random_money = random.randrange(1, 130)
+
+    if luck == 1:
+        updated_money = wallet + random_money
+        updated_money_user = wallet_user - random_money
+        await collection.update_one({"_id": member.id}, {"$set": {"wallet": updated_money}})
+        await collection.update_one({"_id": user}, {"$set": {"wallet": updated_money_user}})
+        await ctx.respond(f"You successfuly pickpocket {user}! you now have {updated_money} while they have {updated_money_user}")
+    if luck == 2:
+        await ctx.respond(f"You failed to pickpocket {user}! mfs can't do shit right these days smh!")
+
 @bot.slash_command(name="pickpocket", description="earn money by picking from people's pockets. cooldown = 2 seconds", guild_ids=[931679366365204600, 932716813580636230])
 @commands.cooldown(1,5, commands.BucketType.user)
 async def pickpocket(ctx):
@@ -114,7 +137,7 @@ async def pickpocket(ctx):
     if luck == 1:
         updated_money = wallet + random_money
         await collection.update_one({"_id": member.id}, {"$set": {"wallet": updated_money}})
-        await ctx.respond(f"You successfuly pickpocket someone! The now have {updated_money}.")
+        await ctx.respond(f"You successfuly pickpocket someone! You now have {updated_money}.")
     if luck == 2:
         await ctx.respond(f"You failed to pickpocket someone! mfs can't do shit right these days smh!")
     
