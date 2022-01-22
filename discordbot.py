@@ -38,7 +38,7 @@ ball = ['yes','indeed','maybe','probably','i dont think so','no lol','ofc not LO
 
 
 
-cluster = motor.motor_asyncio.AsyncIOMotorClient("mongodb+srv://ghost:abc54321@discordcluster.cghhc.mongodb.net/discord?retryWrites=true&w=majority&ssl_cert_reqs=CERT_NONE")
+cluster = motor.motor_asyncio.AsyncIOMotorClient("mongodb+srv://botmaker:54321abc@veryoriginalbot.6q8pj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&ssl_cert_reqs=CERT_NONE")
 db = cluster.discord
 collection = db.bank
 
