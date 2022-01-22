@@ -78,7 +78,6 @@ pymongo==3.12.3
 PyMsgBox==1.0.9
 pyparsing==2.4.7
 pyperclip==1.8.2
-pypiwin32==223
 pypresence==4.2.1
 PyRect==0.1.4
 PyScreeze==0.1.27
@@ -87,9 +86,6 @@ pyttsx3==2.90
 PyTweening==1.0.3
 pytz==2021.1
 pytz-deprecation-shim==0.1.0.post0
-pywin32==300
-pywin32-ctypes==0.2.0
-pywinauto==0.6.8
 regex==2021.4.4
 requests==2.25.1
 requests-oauthlib==1.3.0
