@@ -99,7 +99,7 @@ async def bank(ctx, member: discord.Member=None):
 	
 
 @bot.slash_command(name="steal", description="earn money by picking from user's pockets.", guild_ids=[931679366365204600, 932716813580636230])
-@commands.cooldown(1,60, commands.BucketType.user)
+#@commands.cooldown(1,60, commands.BucketType.user)
 async def steal(ctx, user: discord.Member):
     member = ctx.author
     findbank = await collection.find_one({"_id": ctx.author.id})
