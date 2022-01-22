@@ -112,7 +112,7 @@ async def steal(ctx, user: discord.Member):
     luck = random.randint(1,2)
     wallet = findbank["wallet"]
     wallet_user = findbankuser["wallet"]
-    random_money = random.randrange(1, 130)
+    random_money = random.randrange(1, wallet_user)
 
     if luck == 1:
         updated_money = wallet + random_money
