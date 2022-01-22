@@ -108,11 +108,17 @@ async def steal(ctx, user: discord.Member):
         await collection.insert_one({"_id": ctx.author.id, "bank": 0, "wallet": 0})
     if not findbank:
         await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
+	
+    if user = ctx.author:
+	ctx.send("Ong you make my job harder everyday")
      
     luck = random.randint(1,2)
     wallet = findbank["wallet"]
     wallet_user = findbankuser["wallet"]
     random_money = random.randrange(1, wallet_user)
+
+    if wallet_user == 0:
+	ctx.send("You cannot steal imaginary money")
 
     if luck == 1:
         updated_money = wallet + random_money
