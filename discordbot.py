@@ -109,7 +109,7 @@ async def steal(ctx, user: discord.Member):
     if not findbank:
         await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
 	
-    if user = ctx.author:
+    if user is ctx.author:
 	ctx.send("Ong you make my job harder everyday")
      
     luck = random.randint(1,2)
