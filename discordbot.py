@@ -82,7 +82,7 @@ async def bank(ctx, member: discord.Member=None):
 
     findbank = await collection.find_one({"_id": member.id})
     if not findbank:
-        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
+        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0, "skills": 0})
 
     amt = findbank["bank"]
     wallet = findbank["wallet"]
@@ -104,9 +104,7 @@ async def steal(ctx, user: discord.Member):
     findbank = await collection.find_one({"_id": ctx.author.id})
     findbankuser = await collection.find_one({"_id": member.id})
     if not findbank:
-        await collection.insert_one({"_id": ctx.author.id, "bank": 0, "wallet": 0})
-    if not findbank:
-        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
+        await collection.insert_one({"_id": ctx.author.id, "bank": 0, "wallet": 0, "skills": 0})
 
     if user.id == ctx.author.id:
         luck = 3
@@ -138,7 +136,7 @@ async def pickpocket(ctx):
     member = ctx.author
     findbank = await collection.find_one({"_id": member.id})
     if not findbank:
-        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
+        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0, "skills": 0})
 	
     luck = random.randint(1,2)
     wallet = findbank["wallet"]
@@ -161,9 +159,7 @@ async def give(ctx, user: discord.Member, money: int):
     findbank = await collection.find_one({"_id": ctx.author.id})
     findbankuser = await collection.find_one({"_id": member.id})
     if not findbank:
-        await collection.insert_one({"_id": ctx.author.id, "bank": 0, "wallet": 0})
-    if not findbank:
-        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
+        await collection.insert_one({"_id": ctx.author.id, "bank": 0, "wallet": 0, "skills": 0})
     
     wallet = findbank["wallet"]
     wallet_user = findbankuser["wallet"]
@@ -186,7 +182,7 @@ async def deposit(ctx, money):
     member = ctx.author
     findbank = await collection.find_one({"_id": member.id})
     if not findbank:
-        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
+        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0, "skills": 0})
     
     wallet = findbank["wallet"]
     bankamnt= findbank["bank"]
@@ -210,7 +206,7 @@ async def withdraw(ctx, money):
     member = ctx.author
     findbank = await collection.find_one({"_id": member.id})
     if not findbank:
-        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
+        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0, "skills": 0})
     
     wallet = findbank["wallet"]
     bankamnt= findbank["bank"]
