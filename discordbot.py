@@ -169,17 +169,17 @@ async def give(ctx, user: discord.Member, money: int):
     wallet_user = findbankuser["wallet"]
 
     if user.id == ctx.author.id:
-        await ctx.send("Ong you make my job harder everyday")
+        await ctx.respond("Ong you make my job harder everyday")
     elif wallet == 0:
-        await ctx.send("you cannot send imaginary money lol")
+        await ctx.respond("you cannot send imaginary money lol")
     elif wallet < money:
-        await ctx.send("you cannot send imaginary money lol")
+        await ctx.respond("you cannot send imaginary money lol")
     else:
         updated_money_user = wallet + money
         updated_money = wallet_user - money
         await collection.update_one({"_id": member.id}, {"$set": {"wallet": updated_money_user}})
         await collection.update_one({"_id": ctx.author.id}, {"$set": {"wallet": updated_money}})
-        await ctx.send("transaction complete with no tax fees because you are smort")
+        await ctx.respond("transaction complete with no tax fees because you are smort")
 
 @bot.slash_command(name="deposit", description="depositing the money in your wallet to the bank.", guild_ids=[931679366365204600, 932716813580636230])
 async def deposit(ctx, money):
