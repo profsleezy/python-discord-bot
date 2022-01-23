@@ -154,7 +154,30 @@ async def pickpocket(ctx):
     if luck == 2:
         await ctx.respond(f"You failed to pickpocket someone! mfs can't do shit right these days smh!")
     
+@bot.slash_command(name="give", description="give money to a user", guild_ids=[931679366365204600, 932716813580636230])
+#@commands.cooldown(1,60, commands.BucketType.user)
+async def give(ctx, user: discord.Member, money: int):
+    member = user
+    findbank = await collection.find_one({"_id": ctx.author.id})
+    findbankuser = await collection.find_one({"_id": member.id})
+    if not findbank:
+        await collection.insert_one({"_id": ctx.author.id, "bank": 0, "wallet": 0})
+    if not findbank:
+        await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
+    
+    wallet = findbank["wallet"]
+    wallet_user = findbankuser["wallet"]
 
+    if user.id == ctx.author.id:
+        await ctx.send("Ong you make my job harder everyday")
+    elif wallet == 0:
+        await ctx.send("you cannot send imaginary money lol")
+    else:
+        updated_money_user = wallet + money
+        updated_money = wallet_user - money
+        await collection.update_one({"_id": member.id}, {"$set": {"wallet": updated_money_user}})
+        await collection.update_one({"_id": ctx.author.id}, {"$set": {"wallet": updated_money}})
+        await ctx.send("transaction complete with no tax fees because you are smort")
 
 @bot.slash_command(name="deposit", description="depositing the money in your wallet to the bank.", guild_ids=[931679366365204600, 932716813580636230])
 async def deposit(ctx, money):
