@@ -133,7 +133,7 @@ async def steal(ctx, user: discord.Member):
         await ctx.respond("shame on you")
 	
 @bot.slash_command(name="pickpocket", description="earn money by picking from people's pockets. cooldown = 2 seconds", guild_ids=[931679366365204600, 932716813580636230])
-@commands.cooldown(1,5, commands.BucketType.user)
+#@commands.cooldown(1,5, commands.BucketType.user)
 async def pickpocket(ctx):
     member = ctx.author
     findbank = await collection.find_one({"_id": member.id})
@@ -171,6 +171,8 @@ async def give(ctx, user: discord.Member, money: int):
     if user.id == ctx.author.id:
         await ctx.send("Ong you make my job harder everyday")
     elif wallet == 0:
+        await ctx.send("you cannot send imaginary money lol")
+    elif wallet < money:
         await ctx.send("you cannot send imaginary money lol")
     else:
         updated_money_user = wallet + money
