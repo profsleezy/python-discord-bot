@@ -96,7 +96,6 @@ async def bank(ctx, member: discord.Member=None):
 
     await ctx.respond(embed=embed)
 
-	
 
 @bot.slash_command(name="steal", description="earn money by picking from user's pockets.", guild_ids=[931679366365204600, 932716813580636230])
 #@commands.cooldown(1,60, commands.BucketType.user)
@@ -117,8 +116,8 @@ async def steal(ctx, user: discord.Member):
     wallet_user = findbankuser["wallet"]
     random_money = random.randrange(1, wallet_user)
 	
-	if user.id == ctx.author.id:
-		luck = 0
+    if user.id == ctx.author.id:
+        luck = 0
         await ctx.send("Ong you make my job harder everyday")
 
     if wallet_user == 1:
@@ -132,10 +131,9 @@ async def steal(ctx, user: discord.Member):
         await ctx.respond(f"You successfuly pickpocket {user}! you now have {updated_money} while they have {updated_money_user}")
     if luck == 2:
         await ctx.respond(f"You failed to pickpocket {user}! mfs can't do shit right these days smh!")
-	if luck == 0:
-		await ctx.respond("shame on you")
-
-
+    if luck == 0:
+        await ctx.respond("shame on you")
+	
 @bot.slash_command(name="pickpocket", description="earn money by picking from people's pockets. cooldown = 2 seconds", guild_ids=[931679366365204600, 932716813580636230])
 @commands.cooldown(1,5, commands.BucketType.user)
 async def pickpocket(ctx):
