@@ -179,7 +179,7 @@ async def give(ctx, user: discord.Member, money: int):
         updated_money = wallet_user - money
         await collection.update_one({"_id": member.id}, {"$set": {"wallet": updated_money_user}})
         await collection.update_one({"_id": ctx.author.id}, {"$set": {"wallet": updated_money}})
-        await ctx.respond("transaction complete with no tax fees because you are smort")
+        await ctx.respond(f"{ctx.author} gave {user} {money} with no transaction fees and no taxes. That's tax evasion but who cares.")
 
 @bot.slash_command(name="deposit", description="depositing the money in your wallet to the bank.", guild_ids=[931679366365204600, 932716813580636230])
 async def deposit(ctx, money):
