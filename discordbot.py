@@ -107,17 +107,14 @@ async def steal(ctx, user: discord.Member):
         await collection.insert_one({"_id": ctx.author.id, "bank": 0, "wallet": 0})
     if not findbank:
         await collection.insert_one({"_id": member.id, "bank": 0, "wallet": 0})
-	
-    if user.id == ctx.author.id:
-        await ctx.send("Ong you make my job harder everyday")
-     
+
     luck = random.randint(1,2)
     wallet = findbank["wallet"]
     wallet_user = findbankuser["wallet"]
     random_money = random.randrange(1, wallet_user)
 	
     if user.id == ctx.author.id:
-        luck = 0
+        luck = 3
         await ctx.send("Ong you make my job harder everyday")
 
     if wallet_user == 1:
@@ -131,7 +128,7 @@ async def steal(ctx, user: discord.Member):
         await ctx.respond(f"You successfuly pickpocket {user}! you now have {updated_money} while they have {updated_money_user}")
     if luck == 2:
         await ctx.respond(f"You failed to pickpocket {user}! mfs can't do shit right these days smh!")
-    if luck == 0:
+    if luck == 3:
         await ctx.respond("shame on you")
 	
 @bot.slash_command(name="pickpocket", description="earn money by picking from people's pockets. cooldown = 2 seconds", guild_ids=[931679366365204600, 932716813580636230])
