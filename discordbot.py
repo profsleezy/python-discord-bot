@@ -215,11 +215,9 @@ async def withdraw(ctx, money):
     updated_bank = bankamnt - int(money)
 
     if int(money) > bankamnt:
-        await ctx.respond("Let's face reality, you don't have that much money")
-    
+        await ctx.send("Let's face reality, you don't have that much money")
     if int(money) <= 0:
-        await ctx.respond("wake up to reality, you can't withdraw imaginary money")
-    
+        await ctx.send("wake up to reality, you can't withdraw imaginary money") 
     else:
         await collection.update_one({"_id": member.id}, {"$set": {"wallet": updated_wallet}})
         await collection.update_one({"_id": member.id}, {"$set": {"bank": updated_bank}})
