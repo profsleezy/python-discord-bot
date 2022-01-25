@@ -172,7 +172,7 @@ async def give(ctx, user: discord.Member, money: int):
         await ctx.respond("you cannot send imaginary money lol")
     else:
         updated_money_user = wallet + money
-        updated_money = wallet_user - money
+        updated_money = wallet - money
         await collection.update_one({"_id": member.id}, {"$set": {"wallet": updated_money_user}})
         await collection.update_one({"_id": ctx.author.id}, {"$set": {"wallet": updated_money}})
         await ctx.respond(f"{ctx.author} gave {user} {money} with no transaction fees and no taxes. That's tax evasion but who cares.")
